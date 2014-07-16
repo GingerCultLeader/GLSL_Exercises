@@ -262,7 +262,7 @@ float snoise(vec3 v)
 
 //------------------------------------------------------------------------------
 
-float cloudyNoise(vec3 v)
+/* float cloudyNoise(vec3 v)
 {
     float noise = (snoise(8192.0 * v) / 2.0 +
                    snoise(16384.0 * v) / 4.0 +
@@ -270,24 +270,24 @@ float cloudyNoise(vec3 v)
                    snoise(65536.0 * v) / 16.0);
     
     return noise;
-}
+} */
 
 float cloudyNoise(vec3 v)
 {
-    float noise = (snoise(8192.0 * v) / 2.0 +
-                   snoise(16384.0 * v) / 4.0 +
-                   snoise(32768.0 * v) / 8.0 +
-                   snoise(65536.0 * v) / 16.0);
+    float noise = (snoise(4096.0 * v) / 2.0 +
+                   snoise(8192.0 * v) / 4.0 +
+                   snoise(16384.0 * v) / 8.0 +
+                   snoise(32768.0 * v) / 16.0);
     
     return noise;
 }
 
 float turbulantNoise(vec3 v)
 {
-    float noise = (snoise(8192.0 * v) / 2.0 +
-                   snoise(16384.0 * v) / 4.0 +
-                   snoise(32768.0 * v) / 8.0 +
-                   snoise(65536.0 * v) / 16.0);
+    float noise = (abs(snoise(8192.0 * v)) / 2.0 +
+                   abs(snoise(16384.0 * v)) / 4.0 +
+                   abs(snoise(32768.0 * v)) / 8.0 +
+                   abs(snoise(65536.0 * v)) / 16.0);
     
     return noise;
 }
