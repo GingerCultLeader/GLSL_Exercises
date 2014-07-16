@@ -162,6 +162,9 @@ vec3 contourlines(float k)
 //--------------------------------------------------------------------------------------------------
 
 //Noise functions.
+//The following 5 functions were retrieved from https://github.com/ashima/webgl-noise/tree/master/src
+//More specifically the 3D noise file.
+
 vec3 mod289(vec3 x)
 {
     return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -260,6 +263,26 @@ float snoise(vec3 v)
 //------------------------------------------------------------------------------
 
 float cloudyNoise(vec3 v)
+{
+    float noise = (snoise(8192.0 * v) / 2.0 +
+                   snoise(16384.0 * v) / 4.0 +
+                   snoise(32768.0 * v) / 8.0 +
+                   snoise(65536.0 * v) / 16.0);
+    
+    return noise;
+}
+
+float cloudyNoise(vec3 v)
+{
+    float noise = (snoise(8192.0 * v) / 2.0 +
+                   snoise(16384.0 * v) / 4.0 +
+                   snoise(32768.0 * v) / 8.0 +
+                   snoise(65536.0 * v) / 16.0);
+    
+    return noise;
+}
+
+float turbulantNoise(vec3 v)
 {
     float noise = (snoise(8192.0 * v) / 2.0 +
                    snoise(16384.0 * v) / 4.0 +
