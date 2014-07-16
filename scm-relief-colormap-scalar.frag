@@ -327,7 +327,7 @@ void main()
     float noise_1 = turbulantNoise(var_N.yzx);
     float noise_2 = turbulantNoise(var_N.zxy);
     
-    N = normalize(N + vec3 (noise_0, noise_1, noise_2) / 8.0);
+    N = normalize(N + vec3 (noise_0, noise_1, noise_2) / 4.0);
     
     vec3 reflection = reflect(-L, N);
     float spec = pow(max(dot(reflection, L), 0.0), 64.0);
