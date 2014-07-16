@@ -282,12 +282,22 @@ float cloudyNoise(vec3 v)
     return noise;
 }
 
-float turbulantNoise(vec3 v)
+/* float turbulantNoise(vec3 v)
 {
     float noise = (abs(snoise(8192.0 * v)) / 2.0 +
                    abs(snoise(16384.0 * v)) / 4.0 +
                    abs(snoise(32768.0 * v)) / 8.0 +
                    abs(snoise(65536.0 * v)) / 16.0);
+    
+    return noise;
+} */
+
+float turbulantNoise(vec3 v)
+{
+    float noise = (abs(snoise(4096.0 * v)) / 2.0 +
+                   abs(snoise(8192.0 * v)) / 4.0 +
+                   abs(snoise(16384.0 * v)) / 8.0 +
+                   abs(snoise(32768.0 * v)) / 16.0);
     
     return noise;
 }
@@ -313,9 +323,9 @@ void main()
     float nv = max(0.0, dot(N, V));
     float kd = 2.0 * nl / (nl + nv); */
     
-    float noise_0 = cloudyNoise(var_N);
-    float noise_1 = cloudyNoise(var_N.yzx);
-    float noise_2 = cloudyNoise(var_N.zxy);
+    float noise_0 = turbulantNoise(var_N);
+    float noise_1 = turbulantNoise(var_N.yzx);
+    float noise_2 = turbulantNoise(var_N.zxy);
     
     N = normalize(N + vec3 (noise_0, noise_1, noise_2) / 8.0);
     
