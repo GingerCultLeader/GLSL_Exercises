@@ -207,8 +207,7 @@ void main()
     vec3 reflection = reflect(-L, N);
     float spec = pow(max(dot(reflection, L), 0.0), 64.0);
     float diff = max(dot(N, L), 0.0);
-
-    //gl_FragColor = vec4(d.rgb * kd, 1.0);
+    
     gl_FragColor = vec4(d.rgb * diff, 1.0);
 }
 
